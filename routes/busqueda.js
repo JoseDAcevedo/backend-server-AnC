@@ -73,7 +73,7 @@ function buscarHospital(busqueda, rexp){
     return new Promise( (resolve, reject)=> {
 
         Hospital.find({ nombre: rexp })
-            .populate('usuario', 'nombre email')
+            .populate('usuario', 'nombre email img')
             .exec((err, hospitales)=>{
             
                 if(err){
@@ -92,7 +92,7 @@ function buscarMedico(busqueda, rexp){
     return new Promise( (resolve, reject)=> {
 
         Medico.find({ nombre: rexp })
-            .populate('usuario', 'nombre email')
+            .populate('usuario', 'nombre email img')
             .populate('hospital', 'nombre')
             .exec((err, medicos)=>{
             
@@ -112,7 +112,7 @@ function buscarUsuario(busqueda, rexp){
     
     return new Promise( (resolve, reject)=> {
 
-        Usuario.find({}, 'nombre email role')
+        Usuario.find({}, 'nombre email role img google')
             .or([ {'nombre': rexp}, {'email': rexp}])
             .exec( (err, usuarios) =>{
                 if(err){
